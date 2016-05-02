@@ -1,35 +1,35 @@
----
 language: node_js
 node_js:
-  - "0.12"
-
+- '0.12'
 sudo: false
-
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 env:
-  - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-1.13
-  - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
-
+- EMBER_TRY_SCENARIO=default
+- EMBER_TRY_SCENARIO=ember-1.13
+- EMBER_TRY_SCENARIO=ember-release
+- EMBER_TRY_SCENARIO=ember-beta
+- EMBER_TRY_SCENARIO=ember-canary
 matrix:
   fast_finish: true
   allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
-
+  - env: EMBER_TRY_SCENARIO=ember-canary
 before_install:
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
-
+- export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
+- npm config set spin false
+- npm install -g npm@^2
 install:
-  - npm install -g bower
-  - npm install
-  - bower install
-
+- npm install -g bower
+- npm install
+- bower install
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+- ember try $EMBER_TRY_SCENARIO test
+deploy:
+  provider: npm
+  email: null@ember.theater
+  api_key:
+    secure: E3L/D7NMjFV5YX/XQjIi8VEqyktn0I2WT1L9vYsLqqC13OIPf9KjxLmilzD557QR3ME/qlXINvux3FVq/CVA6N0ZOTKGC3iVWUyzvgDAZ50wUL79tojK7/rI/UZmyX8ypIQWgFNcNAVa+KalS0q/03HkbFIyREefXuTo2cJ+Hqgnf+OicKQtufNNqPKTPR6G3Ds4gCA+R6KHm+ZLO69flUZSPEvuH82XFL4iDR880KshUnVX76eI8lFCscx+waXptvxlqiOHtVIYbz/2+W2L/lnTH6S6QWHGECNHol0jSJ/boEzzOxk436FQufadsq8EPg1EsSL4Dxp+jRai7j0vwdMThdW83M6ETPdYA1sAgyIX05Vyxj6D+/mWduRE1mkMsIMEz0AUAeStL/kV7dOEORCy17zOrU0OIwJmvl+HDhXo3YwSyS/btVubQHavG/+GmhwWIlrmZ1KTVC/xeYNK+X0Orb7zJ1BEv6AmUTGXtLZ8tbKQ2CI1Ti8RYeGTlKLE9KkvWBqufYVt3uE3hdHF1ZOWEoVkSuglBfnl+kKl0XbCE5nftqXDnH05ZNyQZbbsuQ6GcXMpaqS62yueQhqvIG0Ata+2jYZOOi97PHoNR/0VcfZ+z32srn7GanPbv1ep5hoXlW3zahtOZFKAFIT73sJK0Wx/tUkTf9qOcEKTU4U=
+  on:
+    tags: true
+    repo: null-null-null/ember-multiton-service

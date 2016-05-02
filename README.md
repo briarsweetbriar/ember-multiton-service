@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/ember-multiton-service.svg)](https://badge.fury.io/js/ember-multiton-service)
+[![Build Status](https://travis-ci.org/ember-multiton-service/ember-multiton-service.svg?branch=master)](https://travis-ci.org/ember-multiton-service/ember-multiton-service)
+
 # ember-multiton-service
 
 Ember's services are singletons, which in most cases is exactly what you'd want. However, there are scenarios where having multiple instances of a service would come in handy. For instance, imagine that you have a group of components that need to share state. This is exactly the type of thing that a service does well. Let's say that we now want several of these groups to co-exist, each with their own state. Supporting that with a singleton service requires a lot of boilerplate.
