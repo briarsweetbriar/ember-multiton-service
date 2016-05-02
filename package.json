@@ -1,7 +1,7 @@
 {
   "name": "ember-multiton-service",
   "version": "0.0.2",
-  "description": "When a single service instance is not enough.",
+  "description": "When a single instance just isn't enough.",
   "directories": {
     "doc": "doc",
     "test": "tests"
