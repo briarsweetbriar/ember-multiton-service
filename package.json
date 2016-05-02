@@ -1,7 +1,7 @@
 {
   "name": "ember-multiton-service",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "When a single service instance is not enough.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/null-null-null/ember-multiton-service",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -34,6 +34,8 @@
     "ember-data": "^2.5.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
+    "ember-get-config": "0.0.3",
+    "ember-hook": "0.1.1",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.2",
