@@ -7,24 +7,24 @@ function gatherModules(subRoute) {
   const modulePrefix = config.modulePrefix;
   const regexp = new RegExp(`${modulePrefix}\/${subRoute}\/(.*)`);
 
-  const filteredPaths = paths.filter((path) => {
-    return regexp.test(path) && !path.includes('.eslint');
-  });
+  const filteredPaths = paths.filter((path) => regexp.test(path));
 
   return filteredPaths.reduce((modules, path) => {
     const moduleName = regexp.exec(path)[1];
     const module = requirejs(`${modulePrefix}\/${subRoute}\/${moduleName}`).default;
 
-    modules.set(moduleName, module);
+    modules[moduleName] = module;
 
     return modules;
-  }, new Map());
+  }, {});
 }
 
 export function initialize(application) {
   const multitonServices = gatherModules('multiton-services');
 
-  multitonServices.forEach((multitonService, multitonServiceName) => {
+  Object.keys(multitonServices).forEach((multitonServiceName) => {
+    const multitonService = multitonServices[multitonServiceName];
+
     application.register(`multiton-service:${multitonServiceName}`, multitonService, { instantiate: false, singleton: false });
   });
 }
