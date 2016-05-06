@@ -7,11 +7,11 @@ Ember's services are singletons, which in most cases is exactly what you'd want.
 
 `ember-multiton-service` makes this scenario much easier. Swap your `my-app/services/my-service.js` with `my-app/multiton-services/my-service.js`, and then replace `Ember.inject.service('my-service')` with `multiton('my-service', 'someKey')`. And then you're done!
 
-## installation
+## Installation
 
 `ember install ember-multiton-service`
 
-## usage
+## Usage
 
 First, generate a multiton service:
 
@@ -50,7 +50,7 @@ export default Ember.Component.extend({
 
 ### Keys
 
-You'll notice that in the above scenario we pass three values into `multiton`. The first is the path to the multiton service, relative to the `multiton-services` directory. The second two are keys that we bind the service to. You could have provided any number of keys, from one to two to three to many. When injecting the service, `ember-multiton-service` will grab the values of those keys and then check to see if any other instances exist of that service with those keys. If so, it simply returns it. If not, it generates a new one.
+You'll notice that in the above scenario we pass three values into `multiton`. The first is the path to the multiton service, relative to the `multiton-services` directory. The second two are keys that we bind the service to. You could have provided any number of keys, from one to many. When injecting the service, `ember-multiton-service` will grab the values of those keys and then check to see if any other instances exist of that service with those keys. If so, it simply returns it. If not, it generates a new one.
 
 To illustrate, let's consider that component from the last example:
 
