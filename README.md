@@ -62,3 +62,19 @@ To illustrate, let's consider that component from the last example:
 ```
 
 In the scenario above, the first and last components will share the same `fooStore` service, as both their multiton keys are the same. Meanwhile, each of the middle two components will have their own instance of the `fooStore` service, as their key combos are unique.
+
+### Testing
+
+Because `ember-multiton-service` utilizes an initializer, it won't work normally with Ember's integration tests. (Integration tests do not load initializers.) To compensate for that, you'll have to manually run the initializer before each test. Make sure to pass in the application instance, which you can get with `Ember.getOwner(this)`:
+
+```js
+import { initialize } from 'ember-multiton-service';
+
+moduleForComponent('my-component', 'Integration | Component | my component', {
+  integration: true,
+
+  beforeEach() {
+    initialize(Ember.getOwner(this));
+  }
+});
+```
