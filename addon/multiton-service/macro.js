@@ -17,5 +17,5 @@ export default function multiService(path, ...keyAttributes) {
 
       return getMultiton(owner, path, multitonKeys);
     }
-  }).readOnly();
+  });
 }

@@ -78,17 +78,3 @@ moduleForComponent('my-component', 'Integration | Component | my component', {
   }
 });
 ```
-
-You might also want to access a multiton service from within a test. You can grab it with `getMultiton`. As with `initialize`, the first argument should be the application instance. The second argument should be the path to the multiton, similar to what you pass into `multiton`. You can then pass one or more string in after that. Unlike `multiton`, these should not be keys, but rather values:
-
-```js
-import { getMultiton } from 'ember-multiton-service';
-
-moduleForComponent('my-component', 'Integration | Component | my component', {
-  integration: true
-});
-
-test('my test', function(assert) {
-  const myService = getMultiton(Ember.getOwner(this), 'my-service', 'my-first-value', 'my-second-value');
-})
-```
