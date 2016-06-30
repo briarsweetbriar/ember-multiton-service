@@ -20,9 +20,9 @@ export default Service.extend({
 
   addService(path, ...keys) {
     const serviceMap = get(this, 'serviceMap');
-    const factory = getOwner(this).lookup(`multiton-service:${path}`);
+    const factory = getOwner(this)._lookupFactory(`service:${path}`);
 
-    if (isBlank(factory)) { return error(`Expected '${path}' to be a multiton-service, but it was ${factory}`); }
+    if (isBlank(factory)) { return error(`Expected '${path}' to be a service, but it was ${factory}`); }
 
     const multitonService = factory.create({ _multitonServiceKeys: Ember.A(keys) });
 
