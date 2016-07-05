@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Service,
+  assign,
   computed,
   get,
   getOwner,
@@ -14,19 +15,20 @@ const { Logger: { error } } = Ember;
 export default Service.extend({
   serviceMap: computed(() => Ember.Object.create()),
 
-  getService(path, ...keys) {
-    return get(this, `serviceMap.${keys.join('.')}.${path}`);
+  getService(path, multitonPropertiesArray) {
+    return get(this, `serviceMap.${this._getKeys(multitonPropertiesArray).join('.')}.${path}`);
   },
 
-  addService(path, ...keys) {
+  addService(path, multitonPropertiesArray) {
     const serviceMap = get(this, 'serviceMap');
     const factory = getOwner(this)._lookupFactory(`service:${path}`);
 
     if (isBlank(factory)) { return error(`Expected '${path}' to be a service, but it was ${factory}`); }
 
-    const multitonService = factory.create({ _multitonServiceKeys: Ember.A(keys) });
+    const multitonProperties = assign({}, ...multitonPropertiesArray);
+    const multitonService = factory.create(multitonProperties);
 
-    const joinedKeys = keys.reduce((joinedKeys, key) => {
+    const joinedKeys = this._getKeys(multitonPropertiesArray).reduce((joinedKeys, key) => {
       if (isBlank(get(serviceMap, `${joinedKeys}${key}`))) {
         set(serviceMap, `${joinedKeys}${key}`, Ember.Object.create());
       }
@@ -37,16 +39,24 @@ export default Service.extend({
     return set(serviceMap, `${joinedKeys}${path}`, multitonService);
   },
 
-  removeServices(...keys) {
-    const joinedKeys = keys.join('.');
+  removeServices(multitonPropertiesArray) {
+    const joinedKeys = this._getKeys(multitonPropertiesArray).join('.');
     const serviceMap = get(this, 'serviceMap');
-    const service = get(serviceMap, joinedKeys);
-    const multitonKeys = Object.keys(service);
+    const serviceContainer = get(serviceMap, joinedKeys);
+    const multitonKeys = Object.keys(serviceContainer);
 
     multitonKeys.forEach((multitonKey) => {
-      get(service, multitonKey).destroy();
+      get(serviceContainer, multitonKey).destroy();
     });
 
     Reflect.deleteProperty(serviceMap[joinedKeys]);
+  },
+
+  _getKeys(multitonPropertiesArray) {
+    return multitonPropertiesArray.map((keyValue) => {
+      const key = Object.keys(keyValue)[0];
+
+      return `${key}:${get(keyValue, key)}`;
+    });
   }
 });

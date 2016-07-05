@@ -1,5 +1,5 @@
-export default function emberMultitonServiceGetMultiton(owner, path, multitonKeys) {
+export default function emberMultitonServiceGetMultiton(owner, path, multitonPropertiesArray) {
   const manager = owner.lookup('service:multiton-service-manager');
 
-  return manager.getService(path, ...multitonKeys) || manager.addService(path, ...multitonKeys);
+  return manager.getService(path, multitonPropertiesArray) || manager.addService(path, multitonPropertiesArray);
 }
