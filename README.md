@@ -3,7 +3,7 @@
 
 # ember-multiton-service
 
-Of the core Ember objects, [Ember.Service](https://github.com/emberjs/ember.js/blob/v2.7.0/packages/ember-runtime/lib/system/service.js#L35) is perhaps the simplest. Check it out; it's just a plain old Ember object. And yet for all its simplicity, it's also one of the most useful, providing a clean way to both encapsulate state and share it across your application.
+Of the core Ember objects, `Ember.Service` is perhaps the simplest. [Check it out](https://github.com/emberjs/ember.js/blob/v2.7.0/packages/ember-runtime/lib/system/service.js#L35); it's just a plain old Ember object. And yet for all its simplicity, it's also one of the most useful, providing a clean way to both encapsulate state and share it across your application.
 
 The problem is, you can only have one instance of a service in your application; it's a singleton. And although this is typcially more than enough when using services to manage _application_ state, it falls short for managing the states of _associated components_.
 
