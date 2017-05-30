@@ -21,7 +21,7 @@ export default Service.extend({
 
   addService(path, multitonPropertiesArray) {
     const serviceMap = get(this, 'serviceMap');
-    const factory = getOwner(this)._lookupFactory(`service:${path}`);
+    const factory = getOwner(this).factoryFor(`service:${path}`);
 
     if (isBlank(factory)) { return error(`Expected '${path}' to be a service, but it was ${factory}`); }
 
@@ -49,7 +49,7 @@ export default Service.extend({
       get(serviceContainer, multitonKey).destroy();
     });
 
-    Reflect.deleteProperty(serviceMap[joinedKeys]);
+    window.Reflect.deleteProperty(serviceMap[joinedKeys]);
   },
 
   _getKeys(multitonPropertiesArray) {
