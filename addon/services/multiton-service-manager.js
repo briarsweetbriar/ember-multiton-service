@@ -23,7 +23,7 @@ export default Service.extend({
     const serviceMap = get(this, 'serviceMap');
     const factory = getOwner(this).factoryFor(`service:${path}`);
 
-    if (isBlank(factory)) { return error(`Expected '${path}' to be a service, but it was ${factory}`); }
+    if (factory === undefined) { return error(`Expected '${path}' to be a service, but it was ${factory}`); }
 
     const multitonProperties = assign({}, ...multitonPropertiesArray);
     const multitonService = factory.create(multitonProperties);

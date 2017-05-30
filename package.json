@@ -1,6 +1,6 @@
 {
   "name": "ember-multiton-service",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "When a single instance isn't enough.",
   "keywords": [
     "ember-addon"
