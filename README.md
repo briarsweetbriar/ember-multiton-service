@@ -1,5 +1,5 @@
 [![npm version](https://badge.fury.io/js/ember-multiton-service.svg)](https://badge.fury.io/js/ember-multiton-service)
-[![Build Status](https://travis-ci.org/null-null-null/ember-multiton-service.svg?branch=master)](https://travis-ci.org/null-null-null/ember-multiton-service)
+[![Build Status](https://travis-ci.org/patience-tema-baron/ember-multiton-service.svg?branch=master)](https://travis-ci.org/patience-tema-baron/ember-multiton-service)
 
 # ember-multiton-service
 

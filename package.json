@@ -1,6 +1,6 @@
 {
   "name": "ember-multiton-service",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "When a single instance isn't enough.",
   "keywords": [
     "ember-addon"
@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/null-null-null/ember-multiton-service",
+  "repository": "https://github.com/patience-tema-baron/ember-multiton-service",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
